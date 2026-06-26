@@ -1,0 +1,316 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}LLEXXI GLOBAL INNOVATIONS | Luxury Fashion{% endblock %}
+{% block content %}
+<section class="hero-section">
+    <div class="hero-overlay"></div>
+    <div class="container position-relative hero-content">
+        <div class="row align-items-center min-vh-100 py-5">
+            <div class="col-lg-7 reveal-up">
+                <span class="eyebrow">✨ Luxury Fashion House</span>
+                <h1 class="display-3 text-white fw-bold hero-title">Timeless Fashion.<br>Designed For Excellence.</h1>
+                <p class="lead text-white-50 mb-4">LLEXXI Global Innovations curates premium apparel, elegant collections, and modern style for a polished global audience. Discover exclusivity redefined.</p>
+                <div class="d-flex flex-wrap gap-3">
+                    <a href="{% url 'store:login' %}" class="btn btn-gold btn-lg">Browse Collection</a>
+                    <a href="{% url 'store:register' %}" class="btn btn-outline-light btn-lg">Create Account</a>
+                </div>
+                <div class="mt-5 pt-4 border-top border-secondary d-flex gap-5">
+                    <div><small class="text-light-emphasis">Premium Quality</small><div class="text-gold fw-bold">100%</div></div>
+                    <div><small class="text-light-emphasis">Global Presence</small><div class="text-gold fw-bold">42+</div></div>
+                    <div><small class="text-light-emphasis">Happy Clients</small><div class="text-gold fw-bold">1200+</div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="about" class="section-pad">
+    <div class="container">
+        <div class="row g-4 align-items-center">
+            <div class="col-lg-6">
+                <div class="section-heading">About Company</div>
+                <h2 class="display-6 text-white fw-semibold">A premium fashion retailer built around elegance.</h2>
+                <p class="text-light-emphasis">We focus on high quality apparel, modern style, elegant collections, and trusted worldwide fashion experiences.</p>
+            </div>
+            <div class="col-lg-6">
+                <div class="info-card glass-card p-4">
+                    <div class="row g-3">
+                        <div class="col-md-6"><div class="feature-tile">Premium Quality</div></div>
+                        <div class="col-md-6"><div class="feature-tile">Modern Style</div></div>
+                        <div class="col-md-6"><div class="feature-tile">Elegant Collections</div></div>
+                        <div class="col-md-6"><div class="feature-tile">Trusted Worldwide</div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="collections" class="section-pad section-alt">
+    <div class="container">
+        <div class="row align-items-end mb-5">
+            <div class="col-lg-8">
+                <div class="section-heading">Featured Collections</div>
+                <h2 class="text-white">Curated Collections for Every Occasion</h2>
+            </div>
+            <div class="col-lg-4 text-lg-end">
+                <p class="text-light-emphasis">Discover handpicked styles from our most sought-after categories</p>
+            </div>
+        </div>
+        <div class="row g-4">
+            {% for category in categories %}
+            <div class="col-md-6 col-lg-4">
+                <div class="collection-card collection-hover">
+                    <div class="collection-image"></div>
+                    <div class="p-4">
+                        <div class="text-gold small fw-semibold mb-2">COLLECTION</div>
+                        <h5 class="text-white mb-2">{{ category.name }}</h5>
+                        <p class="text-light-emphasis small mb-3">{{ category.description|default:'Luxury looks designed to impress.' }}</p>
+                        <a href="{% url 'store:login' %}" class="btn btn-gold btn-sm">Explore Collection →</a>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12"><div class="glass-card p-4 text-white-50">Create categories in the admin to populate this section.</div></div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<section class="section-pad">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-5">
+                <div class="section-heading">Why Choose Us</div>
+                <h2 class="display-6 text-white fw-semibold mb-4">Elevate Your Style with Premium Selection</h2>
+                <p class="text-light-emphasis mb-4">We're committed to delivering not just fashion, but an experience. From curation to delivery, every detail matters.</p>
+                <div class="row g-3">
+                    <div class="col-6"><div class="feature-tile text-start"><div><div class="text-gold fw-bold mb-1">100%</div><small>Premium Quality</small></div></div></div>
+                    <div class="col-6"><div class="feature-tile text-start"><div><div class="text-gold fw-bold mb-1">Global</div><small>Shipping Available</small></div></div></div>
+                    <div class="col-6"><div class="feature-tile text-start"><div><div class="text-gold fw-bold mb-1">24/7</div><small>Customer Support</small></div></div></div>
+                    <div class="col-6"><div class="feature-tile text-start"><div><div class="text-gold fw-bold mb-1">30 Day</div><small>Easy Returns</small></div></div></div>
+                </div>
+            </div>
+            <div class="col-lg-7">
+                <div class="row g-3">
+                    {% for item in why_choose_us %}
+                    <div class="col-md-6">
+                        <div class="glass-card p-4 why-card benefit-card">
+                            <div class="icon-pill mb-3">✓</div>
+                            <h6 class="text-white mb-2">{{ item }}</h6>
+                            <p class="text-light-emphasis small mb-0">Discover our curated selection designed for the modern luxury consumer.</p>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section-pad section-alt">
+    <div class="container">
+        <div class="section-heading">Latest Fashion</div>
+        <div class="row g-3 gallery-grid">
+            {% for product in trending_products %}
+            <div class="col-6 col-lg-3">
+                <div class="gallery-tile">
+                    <div class="gallery-image"></div>
+                    <div class="gallery-caption">{{ product.name|default:'Luxury Edit' }}</div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12"><div class="glass-card p-4 text-white-50">Add trending products in admin to activate this gallery.</div></div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<section class="section-pad premium-features">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6 mb-4 mb-lg-0">
+                <div class="section-heading">Premium Experience</div>
+                <h2 class="display-6 text-white fw-semibold mb-4">Luxury Redefined</h2>
+                <div class="row g-3">
+                    <div class="col-12">
+                        <div class="glass-card p-4 feature-item">
+                            <div class="feature-icon">🎯</div>
+                            <div>
+                                <h6 class="text-white mb-1">Curated Excellence</h6>
+                                <p class="text-light-emphasis small mb-0">Every piece is handpicked by our fashion experts to ensure premium quality and style.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="glass-card p-4 feature-item">
+                            <div class="feature-icon">🚀</div>
+                            <div>
+                                <h6 class="text-white mb-1">Fast & Secure Shipping</h6>
+                                <p class="text-light-emphasis small mb-0">Global delivery with tracking and insurance on all orders over $100.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="glass-card p-4 feature-item">
+                            <div class="feature-icon">💎</div>
+                            <div>
+                                <h6 class="text-white mb-1">VIP Membership</h6>
+                                <p class="text-light-emphasis small mb-0">Join our exclusive club for early access, special discounts, and member-only events.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="premium-showcase glass-card p-5 text-center">
+                    <div class="showcase-badge">Since 2024</div>
+                    <h3 class="text-gold fw-bold mb-3" style="font-size: 2.5rem;">Luxury</h3>
+                    <p class="text-light-emphasis mb-4">We believe luxury is not just about the product—it's about the entire experience, from discovery to delivery.</p>
+                    <a href="{% url 'store:login' %}" class="btn btn-gold">Explore Premium</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section-pad">
+    <div class="container">
+        <div class="row align-items-end mb-5">
+            <div class="col-lg-8">
+                <div class="section-heading">Testimonials</div>
+                <h2 class="text-white">Loved by Fashion Enthusiasts</h2>
+            </div>
+            <div class="col-lg-4 text-lg-end">
+                <p class="text-light-emphasis">Real stories from our satisfied customers worldwide</p>
+            </div>
+        </div>
+        <div class="row g-4">
+            {% for testimonial in testimonials %}
+            <div class="col-lg-4">
+                <div class="glass-card p-4 h-100 testimonial-card">
+                    <div class="mb-3">
+                        <span class="text-gold">★★★★★</span>
+                    </div>
+                    <p class="text-white mb-3 fst-italic">"{{ testimonial.quote }}"</p>
+                    <div class="testimonial-author">
+                        <div class="text-gold fw-semibold">{{ testimonial.name }}</div>
+                        <div class="text-light-emphasis small">{{ testimonial.role }}</div>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12"><div class="glass-card p-4 text-white-50">Testimonials appear here once added in admin.</div></div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<section class="section-pad section-alt stats-section">
+    <div class="container">
+        <div class="row g-4 text-center">
+            <div class="col-6 col-lg-3">
+                <div class="stat-card glass-card p-4 h-100">
+                    <div class="stat-box" data-counter="1250">0</div>
+                    <small class="text-light-emphasis">Happy Customers Worldwide</small>
+                </div>
+            </div>
+            <div class="col-6 col-lg-3">
+                <div class="stat-card glass-card p-4 h-100">
+                    <div class="stat-box" data-counter="3400">0</div>
+                    <small class="text-light-emphasis">Premium Orders Fulfilled</small>
+                </div>
+            </div>
+            <div class="col-6 col-lg-3">
+                <div class="stat-card glass-card p-4 h-100">
+                    <div class="stat-box" data-counter="128">0</div>
+                    <small class="text-light-emphasis">Exclusive Collections</small>
+                </div>
+            </div>
+            <div class="col-6 col-lg-3">
+                <div class="stat-card glass-card p-4 h-100">
+                    <div class="stat-box" data-counter="42">0</div>
+                    <small class="text-light-emphasis">Countries Served</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="contact" class="section-pad section-alt">
+    <div class="container">
+        <div class="row align-items-center mb-5">
+            <div class="col-lg-8">
+                <div class="section-heading">Get in Touch</div>
+                <h2 class="text-white">Connect with our luxury fashion experts</h2>
+            </div>
+        </div>
+        <div class="row g-4">
+            <div class="col-lg-5">
+                <div class="mb-4">
+                    <p class="text-light-emphasis">We're here to help with any questions about our collections, shipping, or membership programs.</p>
+                </div>
+                <div class="glass-card p-4 mb-3 contact-info">
+                    <div class="text-gold fw-semibold small mb-1">LOCATION</div>
+                    <div class="text-white">Your premium showroom location</div>
+                </div>
+                <div class="glass-card p-4 mb-3 contact-info">
+                    <div class="text-gold fw-semibold small mb-1">PHONE</div>
+                    <div class="text-white">+000 000 0000</div>
+                </div>
+                <div class="glass-card p-4 contact-info">
+                    <div class="text-gold fw-semibold small mb-1">EMAIL</div>
+                    <div class="text-white">hello@luxora.local</div>
+                </div>
+            </div>
+            <div class="col-lg-7">
+                <form class="glass-card p-4 mb-4 contact-form" method="post" action="{% url 'store:contact' %}">
+                    {% csrf_token %}
+                    <h4 class="text-white mb-4">Send us a Message</h4>
+                    <div class="form-group mb-3">
+                        {{ contact_form.name }}
+                        <label for="{{ contact_form.name.id_for_label }}" class="form-label">Full Name</label>
+                        {% if contact_form.name.errors %}<div class="form-error">{{ contact_form.name.errors }}</div>{% endif %}
+                    </div>
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <div class="form-group mb-0">
+                                {{ contact_form.email }}
+                                <label for="{{ contact_form.email.id_for_label }}" class="form-label">Email Address</label>
+                                {% if contact_form.email.errors %}<div class="form-error">{{ contact_form.email.errors }}</div>{% endif %}
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group mb-0">
+                                {{ contact_form.phone }}
+                                <label for="{{ contact_form.phone.id_for_label }}" class="form-label">Phone Number</label>
+                                {% if contact_form.phone.errors %}<div class="form-error">{{ contact_form.phone.errors }}</div>{% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group mt-3 mb-4">
+                        {{ contact_form.message }}
+                        <label for="{{ contact_form.message.id_for_label }}" class="form-label">Message</label>
+                        {% if contact_form.message.errors %}<div class="form-error">{{ contact_form.message.errors }}</div>{% endif %}
+                    </div>
+                    <button type="submit" class="btn btn-gold w-100">
+                        <span>Send Message</span>
+                        <span class="ms-2">→</span>
+                    </button>
+                </form>
+                <form class="glass-card p-4 newsletter-form" method="post" action="{% url 'store:newsletter' %}">
+                    {% csrf_token %}
+                    <h4 class="text-white mb-2">Subscribe to Our Newsletter</h4>
+                    <p class="text-light-emphasis small mb-4">Get exclusive early access to new collections and VIP member benefits.</p>
+                    <div class="form-group mb-0">
+                        {{ newsletter_form.email }}
+                        <label for="{{ newsletter_form.email.id_for_label }}" class="form-label">Email Address</label>
+                        {% if newsletter_form.email.errors %}<div class="form-error">{{ newsletter_form.email.errors }}</div>{% endif %}
+                    </div>
+                    <button type="submit" class="btn btn-gold w-100 mt-3">Subscribe Now</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
